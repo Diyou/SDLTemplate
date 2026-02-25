@@ -1,4 +1,3 @@
-find_package(SDL3 REQUIRED CONFIG)
 include(C++Utils)
 
 target_sources(${PROJECT_NAME}

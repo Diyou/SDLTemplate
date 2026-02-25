@@ -4,13 +4,13 @@ on:
   workflow_dispatch:
 
 env:
-  BUILD_TYPE: debug
+  PRESET: debug
 
 jobs:
   build:
     runs-on: ubuntu-24.04
     container:
-      image: fedora:42
+      image: fedora:44
 
     steps:
       - name: Update and install dependencies
@@ -20,17 +20,19 @@ jobs:
               git                  
               unzip
               cmake ninja-build                
-              gcc gcc-c++        
-              SDL3-devel
+              gcc gcc-c++
+              alsa-lib-devel fribidi-devel pulseaudio-libs-devel pipewire-devel        
+              libX11-devel libXext-devel libXrandr-devel libXcursor-devel libXi-devel libXinerama-devel libXfixes-devel
+              wayland-devel libxkbcommon-devel libdecor-devel mesa-libGL-devel mesa-libEGL-devel mesa-libGLES-devel libudev-devel
           )
           sudo dnf install -y ${packages[@]}
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: true
 
       - name: CMake Configuration
-        run: cmake --preset=${{env.BUILD_TYPE}}
+        run: cmake --preset=${{env.PRESET}}
 
       - name: CMake Build
-        run: cmake --build --preset=${{env.BUILD_TYPE}}
+        run: cmake --build --preset=${{env.PRESET}}

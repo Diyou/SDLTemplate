@@ -5,7 +5,7 @@ on:
 
 env:
   CMAKE_VERSION: 4.0.2
-  BUILD_TYPE: debug
+  PRESET: debug::android
 
 jobs:
   build:
@@ -21,12 +21,12 @@ jobs:
         run: |
           echo "${ANDROID_HOME}/cmake/${{env.CMAKE_VERSION}}/bin" >> $GITHUB_PATH
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: true
 
       - name: CMake Configuration
-        run: cmake --preset=${{env.BUILD_TYPE}}::android
+        run: cmake --preset=${{env.PRESET}}
 
       - name: CMake Build
-        run: cmake --build --preset=${{env.BUILD_TYPE}}::android
+        run: cmake --build --preset=${{env.PRESET}}

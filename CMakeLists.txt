@@ -1,6 +1,10 @@
-cmake_minimum_required(VERSION 4.0.0)
+cmake_minimum_required(VERSION 3.31.0)
 
+# Options
 set(DOTCMAKE_CONFIGURE_IDE ON)
+set(DOTCMAKE_EMSDK_AUTOUPDATE ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(GLM_ENABLE_LANG_EXTENSIONS OFF)
 
 project(SDLTemplate CXX)
 

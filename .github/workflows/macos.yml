@@ -4,31 +4,28 @@ on:
   workflow_dispatch:
 
 env:
-  XCODE: 16.4
-  SDL_VERSION: 3.2.14
-  BUILD_TYPE: debug
+  PRESET: debug
+  LLVM: 20
+  CMAKE_VERSION: 4.2.3
+  NINJA_VERSION: 1.13.1
 
 jobs:
   build:
-    runs-on: macos-15
+    runs-on: macos-26
 
     steps:
-      - name: Switch Xcode
-        run: sudo xcode-select -s /Applications/Xcode_${{env.XCODE}}.app
-
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: true
-
-      - name: Setup SDL sdk
-        uses: libsdl-org/setup-sdl@main
-        with:
-          version: ${{env.SDL_VERSION}}
-          build-type: Release
-          pre-release: false
-
+          
       - name: CMake Configuration
-        run: cmake --preset=${{env.BUILD_TYPE}}
+        run: |
+          cmake --preset=${{env.PRESET}}  \
+            -DCMAKE_C_COMPILER=$(brew --prefix llvm@${{env.LLVM}})/bin/clang        \
+            -DCMAKE_CXX_COMPILER=$(brew --prefix llvm@${{env.LLVM}})/bin/clang++    \
+            -DCMAKE_PREFIX_PATH=$(brew --prefix llvm@${{env.LLVM}})                 \
+            -DCMAKE_OSX_SYSROOT=macosx \
+            -DCMAKE_CXX_COMPILER_ID_ARG1=-resource-dir=$(brew --prefix llvm@${{env.LLVM}})/lib/c++
 
       - name: CMake Build
-        run: cmake --build --preset=${{env.BUILD_TYPE}}
+        run: cmake --build --preset=${{env.PRESET}}

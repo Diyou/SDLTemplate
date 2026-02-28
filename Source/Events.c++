@@ -29,9 +29,20 @@ public:
   static iterator
   Remove(SDL_WindowID windowID);
 
+  //Note: Fails with msvc when defined in :Events.implementation
   template< typename Variant, typename... Args >
   static pair< iterator, bool >
-  Emplace(Args &&...args);
+  Emplace(Args &&...args)
+  {
+    using value_type = iterator::value_type;
+    auto value       = make_unique< value_type::second_type::element_type >(
+      in_place_type< Variant >, std::forward< Args >(args)...);
+
+    value_type::first_type const key =
+      visit([](auto const &window) { return window.GetID(); }, *value);
+
+    return instances.emplace(key, std::move(value));
+  }
 
   static iterator
   End()

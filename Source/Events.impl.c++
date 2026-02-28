@@ -32,18 +32,4 @@ Container::Remove(SDL_WindowID windowID)
   return End();
 }
 
-template< typename Variant, typename... Args >
-pair< Container::iterator, bool >
-Container::Emplace(Args &&...args)
-{
-  using value_type = iterator::value_type;
-  auto value       = make_unique< value_type::second_type::element_type >(
-    in_place_type< Variant >, std::forward< Args >(args)...);
-
-  value_type::first_type const key =
-    visit([](auto const &window) { return window.GetID(); }, *value);
-
-  return instances.emplace(key, std::move(value));
-}
-
 }

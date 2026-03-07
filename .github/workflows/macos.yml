@@ -6,8 +6,6 @@ on:
 env:
   PRESET: debug
   LLVM: 20
-  CMAKE_VERSION: 4.2.3
-  NINJA_VERSION: 1.13.1
 
 jobs:
   build:
@@ -24,7 +22,7 @@ jobs:
             -DCMAKE_C_COMPILER=$(brew --prefix llvm@${{env.LLVM}})/bin/clang        \
             -DCMAKE_CXX_COMPILER=$(brew --prefix llvm@${{env.LLVM}})/bin/clang++    \
             -DCMAKE_PREFIX_PATH=$(brew --prefix llvm@${{env.LLVM}})                 \
-            -DCMAKE_OSX_SYSROOT=macosx \
+            -DCMAKE_OSX_SYSROOT=macosx                                              \
             -DCMAKE_CXX_COMPILER_ID_ARG1=-resource-dir=$(brew --prefix llvm@${{env.LLVM}})/lib/c++
 
       - name: CMake Build

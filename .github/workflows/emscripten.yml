@@ -10,7 +10,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-slim
     container: emscripten/emsdk:5.0.2
 
     steps:

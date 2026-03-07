@@ -29,7 +29,7 @@ public:
   static iterator
   Remove(SDL_WindowID windowID);
 
-  //Note: Fails with msvc when defined in :Events.implementation
+  // Note: Fails with msvc when defined in :Events.implementation
   template< typename Variant, typename... Args >
   static pair< iterator, bool >
   Emplace(Args &&...args)

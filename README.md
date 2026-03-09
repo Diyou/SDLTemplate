@@ -11,15 +11,15 @@ Toolchain abstractions via [dotcmake](https://github.com/Diyou/.cmake)
 
 ### Contents:
 
-- [Platform agnostic main](Source/main.cpp) (via SDL_MAIN_USE_CALLBACKS)
-- [Global App-State instance](Source/App.State.c++)
-- [Event-Mapping](Source/Events.c++) (via static dispatch)
-- [Basic Window class with default Renderer](Source/Windows/Renderer.c++)
+- [Platform agnostic main](Source/App/main.cxx) (via SDL_MAIN_USE_CALLBACKS)
+- [Global App-State instance](Source/App/App.State.cxx)
+- [Event-Mapping](Source/App/Events.cxx) (via static dispatch)
+- [Basic Window class with default Renderer](Source/Windows/Renderer.cxx)
 
 ### How-to:
 
- - Just edit [Renderer.c++](Source/Windows/Renderer.c++)
+ - Just edit [Renderer.cxx](Source/Windows/Renderer.cxx)
  - Or
-    1. Create a new partiton in Source/Windows with a new struct     inheriting from [Window](Source/Windows/Window.c++)
-    2. Modify [Variants](Source/Variants.c++) to include the new Window variant
-    3. Add the partition in [Windows.c++](Source/Windows.c++)
+    1. Create a new partiton in Source/Windows with a new struct     inheriting from [Window](Source/Windows/Window.cxx)
+    2. Modify [Variants](Source/Variants.cxx) to include the new Window variant
+    3. Add the partition in [Windows.cxx](Source/Windows.cxx)

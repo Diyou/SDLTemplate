@@ -2,7 +2,7 @@ module;
 #ifndef CMAKE_IMPORT_STD
 #  include <variant>
 #endif
-module        App:Variants;
+export module App:Variants;
 // Make App available in downstream partitions
 export import App;
 

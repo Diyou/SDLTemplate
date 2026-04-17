@@ -13,7 +13,6 @@ PUBLIC
         Windows.cxx
             Windows/Window.cxx
             Windows/Renderer.cxx
-    
 )
 
 target_link_libraries(${PROJECT_NAME}

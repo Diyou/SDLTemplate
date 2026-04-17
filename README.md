@@ -11,8 +11,8 @@ Toolchain abstractions via [dotcmake](https://github.com/Diyou/.cmake)
 
 ### Contents:
 
-- [Platform agnostic main](Source/App/main.cxx) (via SDL_MAIN_USE_CALLBACKS)
-- [Global App-State instance](Source/App/App.State.cxx)
+- [Platform agnostic main](Source/App/App.Main.cxx) (via SDL_MAIN_USE_CALLBACKS)
+- [Global App-State instance](Source/App/App.ixx)
 - [Event-Mapping](Source/App/Events.cxx) (via static dispatch)
 - [Basic Window class with default Renderer](Source/Windows/Renderer.cxx)
 

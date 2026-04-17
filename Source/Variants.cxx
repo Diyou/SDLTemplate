@@ -2,7 +2,9 @@ module;
 #ifndef CMAKE_IMPORT_STD
 #  include <variant>
 #endif
-module App:Variants;
+module        App:Variants;
+// Make App available in downstream partitions
+export import App;
 
 #ifdef CMAKE_IMPORT_STD
 import std;
@@ -10,6 +12,7 @@ import std;
 
 namespace Windows {
 
+// Supported Windows:
 using Variants = std::variant< struct Window, struct Renderer >;
 
 }

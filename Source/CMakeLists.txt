@@ -6,15 +6,14 @@ PUBLIC
     TYPE CXX_MODULES
     FILES
         App/App.ixx
-        App/App.State.cxx
-        App/Events.cxx      App/Events.impl.cxx
+        App/App.Main.cxx
+        App/Events.cxx
         Utils/Logger.cxx
         Variants.cxx
         Windows.cxx
             Windows/Window.cxx
             Windows/Renderer.cxx
-PRIVATE
-    App/main.cxx
+    
 )
 
 target_link_libraries(${PROJECT_NAME}

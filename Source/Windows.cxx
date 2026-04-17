@@ -1,5 +1,6 @@
 module App:Windows;
 
+// List all Window partitions here:
 import :Window;
 import :Renderer;
 

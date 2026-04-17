@@ -9,15 +9,13 @@ module;
 #include <SDL3/SDL_video.h>
 #include <cassert>
 module App:Renderer;
+import :Window;
 
 #ifdef CMAKE_IMPORT_STD
 import std;
 #endif
 
 import dotcmake;
-
-import :Window;
-import :App;
 import Logger;
 
 namespace Windows {
@@ -48,8 +46,7 @@ struct Renderer final : Window
   void
   OnResized(SDL_WindowEvent &event) override
   {
-    auto const &width  = event.data1;
-    auto const &height = event.data2;
+    auto const &[width, height] = forward_as_tuple(event.data1, event.data2);
   }
 
   [[nodiscard]]

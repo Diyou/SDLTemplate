@@ -2,6 +2,8 @@ module;
 #include <webgpu/webgpu_cpp.h>
 #ifndef CMAKE_IMPORT_STD
 #  include <expected>
+#  include <iostream>
+#  include <ranges>
 #endif
 #include <SDL3/SDL_video.h>
 export module wgpu;

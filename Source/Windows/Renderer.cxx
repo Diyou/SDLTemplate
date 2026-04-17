@@ -47,10 +47,7 @@ struct Renderer final : Window
   // Override Window Event
   void
   OnResized(SDL_WindowEvent &event) override
-  {
-    auto const &width  = event.data1;
-    auto const &height = event.data2;
-  }
+  {}
 
   [[nodiscard]]
   SDL_AppResult

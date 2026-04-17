@@ -6,20 +6,33 @@ PUBLIC
     TYPE CXX_MODULES
     FILES
         App/App.ixx
-        App/App.State.cxx
-        App/Events.cxx      App/Events.impl.cxx
+        App/App.Main.cxx
+        App/Events.cxx
         Utils/Logger.cxx
         Variants.cxx
         Windows.cxx
             Windows/Window.cxx
             Windows/Renderer.cxx
+            Windows/WGPUWindow.cxx
+                Windows/webgpu/Backend.ixx
 PRIVATE
-    App/main.cxx
+        Windows/webgpu/Surface.cxx
+        Windows/webgpu/Instance.cxx
 )
 
 target_link_libraries(${PROJECT_NAME}
     .cmake::Utils
     SDL3::SDL3
+    $<IF:$<BOOL:${EMSCRIPTEN}>,
+        emdawnwebgpu_cpp,
+        dawn::webgpu_dawn
+        dawn::dawncpp_headers
+    >
+)
+target_link_options(${PROJECT_NAME} PRIVATE
+    $<$<BOOL:${EMSCRIPTEN}>:
+        -sASYNCIFY # or -sJSPI
+    >
 )
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE

@@ -6,21 +6,24 @@ module;
 #endif
 #define SDL_MAIN_USE_CALLBACKS
 #include <SDL3/SDL_hints.h>
+#include <SDL3/SDL_init.h>
 #include <SDL3/SDL_log.h>
 #include <SDL3/SDL_main.h>
 
-module App;
-import :Events.implementation;
+module App:Main;
+import App;
+import :Events;
+import :Windows;
 
 using namespace std;
 
+using Window = Windows::Default;
+
+alignas(App) static inline array< byte, sizeof(App) > app;
+static inline tuple< Windows::Container::iterator > runtime;
+
 struct App::Main
 {
-  using Window = Windows::Default;
-
-  alignas(App) static inline array< byte, sizeof(App) > app;
-  static inline tuple< Windows::Container::iterator > runtime;
-
   static SDL_AppResult
   Init(void **appstate, int argc, char **argv)
   {
@@ -112,6 +115,7 @@ struct App::Main
   }
 };
 
+// SDL_MAIN callbacks
 extern "C" {
 SDLMAIN_DECLSPEC SDL_AppResult SDLCALL
 SDL_AppInit(void **appstate, int argc, char *argv[])
@@ -136,4 +140,28 @@ SDL_AppQuit(void *appstate, SDL_AppResult result)
 {
   App::Main::Quit(appstate, result);
 }
+}
+
+// Final implementations
+namespace Windows {
+
+// These need to know the sizes of the variants and couldn't be inlined
+decltype(Container::instances) Container::instances{};
+
+decltype(Container::Get(0))
+Container::Get(SDL_WindowID windowID)
+{
+  return instances.at(windowID);
+}
+
+decltype(Container::Remove(0))
+Container::Remove(SDL_WindowID windowID)
+{
+  auto const item = instances.find(windowID);
+  if (item != instances.end()) [[likely]] {
+    return instances.erase(item);
+  }
+  return End();
+}
+
 }

@@ -19,7 +19,7 @@
       "description": "Dawn, a WebGPU implementation",
       "type": "git",
       "url": "https://dawn.googlesource.com/dawn",
-      "tag": "chromium/7737",
+      "tag": "chromium/7833",
       "submodules": [
         "third_party/khronos",
         "third_party/jinja2",

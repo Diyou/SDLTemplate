@@ -15,6 +15,7 @@ PUBLIC
             Windows/Renderer.cxx
             Windows/WGPUWindow.cxx
                 Windows/webgpu/Backend.ixx
+        Scene.cxx
 PRIVATE
         Windows/webgpu/Surface.cxx
         Windows/webgpu/Instance.cxx

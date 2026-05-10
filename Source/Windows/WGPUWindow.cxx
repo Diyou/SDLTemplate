@@ -20,46 +20,36 @@ import dotcmake;
 import :Window;
 import wgpu;
 
+import Scene;
+
 namespace Windows {
 
 using namespace std;
 using namespace dotcmake;
 
-struct WGPUWindow final
-: Window
-, private wgpu::Backend
+struct WGPUWindow final : Window
 {
-  enum class Errors : uint8_t
-  {
-    Unsupported_Surface
-  };
-
-private:
-  expected< void, Errors >
-  InitWGPU();
-
-public:
-  WGPUWindow(
-    string const   &title,
-    SDL_WindowFlags flags  = 0,
-    int             width  = DEFAULT_WIDTH,
-    int             height = DEFAULT_HEIGHT)
-  : Window{title, flags, width, height}
-  , wgpu::Backend(handle)
-  {}
+  using Window::Window;
 
   [[nodiscard]]
   SDL_AppResult
   Iterate() const override
   {
+    scene.Draw();
+    Backend.Iterate();
     return Window::Iterate();
   }
 
   void
-  Destroy() const
+  Destroy()
   {
+    Backend.Destroy();
     Window::Destroy();
   }
+
+private:
+  wgpu::Backend Backend{handle};
+  Scene         scene{Backend};
 };
 
 }

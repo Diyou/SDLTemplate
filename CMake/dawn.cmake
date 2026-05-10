@@ -5,3 +5,19 @@ set(DAWN_BUILD_TESTS OFF)
 if(LINUX)
     set(DAWN_USE_WAYLAND ON)
 endif()
+
+if(CMAKE_BUILD_TYPE STREQUAL Debug)
+    set(DAWN_BUILD_MONOLITHIC_LIBRARY SHARED)
+endif()
+
+set(DAWN_ENABLE_DESKTOP_GL OFF)
+set(DAWN_ENABLE_OPENGLES OFF)
+
+if(${CMAKE_POSITION_INDEPENDENT_CODE})
+    set(DAWN_ENABLE_PIC ON)
+else()
+    set(DAWN_ENABLE_PIC OFF)
+endif()
+
+# Deürecated in glslang (disables warning)
+set(ENABLE_HLSL OFF)

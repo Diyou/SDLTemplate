@@ -1,7 +1,10 @@
 module;
-#include <webgpu/webgpu_cpp.h>
-module wgpu;
+#ifndef CMAKE_IMPORT_STD
+#  include <array>
+#endif
+module webgpu;
 
+import wgpu;
 import dotcmake;
 
 using namespace dotcmake;

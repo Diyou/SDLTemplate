@@ -1,16 +1,16 @@
 module;
-#include <webgpu/webgpu_cpp.h>
 #ifndef CMAKE_IMPORT_STD
 #  include <expected>
 #endif
 #include <SDL3/SDL_metal.h>
 #include <SDL3/SDL_video.h>
-module wgpu;
+module webgpu;
 
 #ifdef CMAKE_IMPORT_STD
 import std;
 #endif
 
+import wgpu;
 import dotcmake;
 
 using namespace std;

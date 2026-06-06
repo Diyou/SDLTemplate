@@ -1,11 +1,14 @@
 module;
-#include <webgpu/webgpu_cpp.h>
+#ifndef CMAKE_IMPORT_STD
+#  include <vector>
+#endif
 export module Scene;
 
 #ifdef CMAKE_IMPORT_STD
 import std;
 #endif
 
+import webgpu;
 import wgpu;
 
 using namespace std;

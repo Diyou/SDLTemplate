@@ -1,17 +1,17 @@
 module;
-#include <webgpu/webgpu_cpp.h>
 #ifndef CMAKE_IMPORT_STD
 #  include <expected>
 #  include <iostream>
 #  include <ranges>
 #endif
 #include <SDL3/SDL_video.h>
-export module wgpu;
+export module webgpu;
 
 #ifdef CMAKE_IMPORT_STD
 import std;
 #endif
 
+import wgpu;
 import dotcmake;
 
 using namespace std;
@@ -23,7 +23,7 @@ struct Backend;
 
 struct IScene
 {
-  Backend const &Backend;
+  struct Backend const &Backend;
 
   IScene(struct Backend const &backend)
   : Backend{backend}
@@ -203,7 +203,9 @@ struct Backend
   void
   Iterate() const
   {
-    surface.Present();
+    if constexpr (!Platform::Web) {
+      surface.Present();
+    }
     instance.ProcessEvents();
   }
 

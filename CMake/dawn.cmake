@@ -19,5 +19,5 @@ else()
     set(DAWN_ENABLE_PIC OFF)
 endif()
 
-# Deürecated in glslang (disables warning)
+# Deprecated in glslang (disables warning)
 set(ENABLE_HLSL OFF)

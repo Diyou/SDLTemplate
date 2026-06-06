@@ -5,7 +5,7 @@ module;
 #  include <ranges>
 #endif
 #include <SDL3/SDL_video.h>
-export module webgpu;
+export module Backend.webgpu;
 
 #ifdef CMAKE_IMPORT_STD
 import std;

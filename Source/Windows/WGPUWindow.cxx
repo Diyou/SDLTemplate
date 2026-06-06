@@ -18,7 +18,7 @@ import std;
 
 import dotcmake;
 import :Window;
-import webgpu;
+import Backend.webgpu;
 
 import Scene;
 

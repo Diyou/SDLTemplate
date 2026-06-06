@@ -2,7 +2,7 @@ module;
 #ifndef CMAKE_IMPORT_STD
 #  include <array>
 #endif
-module webgpu;
+module Backend.webgpu;
 
 import wgpu;
 import dotcmake;

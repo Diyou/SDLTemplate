@@ -4,7 +4,7 @@ module;
 #endif
 #include <SDL3/SDL_metal.h>
 #include <SDL3/SDL_video.h>
-module webgpu;
+module Backend.webgpu;
 
 #ifdef CMAKE_IMPORT_STD
 import std;

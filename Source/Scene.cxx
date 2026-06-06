@@ -8,7 +8,7 @@ export module Scene;
 import std;
 #endif
 
-import webgpu;
+import Backend.webgpu;
 import wgpu;
 
 using namespace std;
